@@ -21,4 +21,46 @@ public class Nodo {
     public Nodo(Object valor) {
         this.valor = valor;
     }
+
+    public Nodo getPadre() {
+        return padre;
+    }
+
+    public void setPadre(Nodo padre) {
+        this.padre = padre;
+    }
+
+    public Nodo getIzq() {
+        return izq;
+    }
+
+    public void setIzq(Nodo izq) {
+        this.izq = izq;
+    }
+
+    public Nodo getDere() {
+        return dere;
+    }
+
+    public void setDere(Nodo dere) {
+        this.dere = dere;
+    }
+
+    public Object getValor() {
+        return valor;
+    }
+
+    public void setValor(Object valor) {
+        this.valor = valor;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+  
 }
