@@ -83,4 +83,33 @@ public class Arbol {
         }
     }
 
+    public void elementoMasAlto(int tipo, Nodo act, Nodo cam) {
+        if (tipo == 1) {
+            if (act.getIzq() != null) {
+                elementoMasAlto(1, act.getIzq(), cam);
+            } else {
+                System.out.println("Act: " + act.getValor());
+                System.out.println("Cam: " + cam.getValor());
+                System.out.println("Se encontro se intercambia info");
+                Object ele = act.getValor();
+                act.setValor(cam.getValor());
+                cam.setValor(ele);
+                System.out.println("Act: " + act.getValor());
+                System.out.println("Cam: " + cam.getValor());
+            }
+        } else {
+            if (act.getDere() != null) {
+                elementoMasAlto(2, act.getDere(), cam);
+            } else {
+                System.out.println("Act: " + act.getValor());
+                System.out.println("Cam: " + cam.getValor());
+                System.out.println("Se encontro se intercambia info");
+                Object ele = act.getValor();
+                act.setValor(cam.getValor());
+                cam.setValor(ele);
+                System.out.println("Act: " + act.getValor());
+                System.out.println("Cam: " + cam.getValor());
+            }
+        }
+    }
 }
