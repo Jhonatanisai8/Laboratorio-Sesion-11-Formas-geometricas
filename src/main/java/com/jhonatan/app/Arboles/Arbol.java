@@ -1,6 +1,7 @@
 package com.jhonatan.app.Arboles;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.LinkedList;
 
 /**
@@ -8,40 +9,40 @@ import java.util.LinkedList;
  * @author Jhonatan
  */
 public class Arbol {
-
+    
     public Nodo cabeza = null;
     public int TAM;
     public LinkedList lineas = new LinkedList();
     public LinkedList circulos = new LinkedList();
-
+    
     public Nodo getCabeza() {
         return cabeza;
     }
-
+    
     public void setCabeza(Nodo cabeza) {
         this.cabeza = cabeza;
     }
-
+    
     public int getTAM() {
         return TAM;
     }
-
+    
     public void setTAM(int TAM) {
         this.TAM = TAM;
     }
-
+    
     public LinkedList getLineas() {
         return lineas;
     }
-
+    
     public void setLineas(LinkedList lineas) {
         this.lineas = lineas;
     }
-
+    
     public LinkedList getCirculos() {
         return circulos;
     }
-
+    
     public void setCirculos(LinkedList circulos) {
         this.circulos = circulos;
     }
@@ -57,7 +58,7 @@ public class Arbol {
         }
         return aux;
     }
-
+    
     public void borrar(Nodo padre, Nodo eli) {
         System.out.println("Padre: " + padre.getValor());
         System.out.println("Elim: " + eli.getValor());
@@ -71,7 +72,7 @@ public class Arbol {
                     borrar(padre.getDere(), eli);
                 }
             }
-
+            
             if (padre.getIzq() != null) {
                 System.out.println("Me voy para la izq <--");
                 if (padre.getIzq().comparar(eli) == 0) {
@@ -83,7 +84,7 @@ public class Arbol {
             }
         }
     }
-
+    
     public void elementoMasAlto(int tipo, Nodo act, Nodo cam) {
         if (tipo == 1) {
             if (act.getIzq() != null) {
@@ -113,7 +114,7 @@ public class Arbol {
             }
         }
     }
-
+    
     public boolean buscar(Nodo val, Nodo a) {
         if (a.comparar(val) == 0) {
             return true;
@@ -126,7 +127,7 @@ public class Arbol {
             return false;
         }
     }
-
+    
     public void colorearBuscado(String val) {
         for (int i = 0; i < circulos.size(); i++) {
             Circulo c = (Circulo) circulos.get(i);
@@ -135,11 +136,11 @@ public class Arbol {
             }
         }
     }
-
+    
     public void mensaje(String s) {
         System.out.println("Mensaje del  sistema: " + s);
     }
-
+    
     public boolean seBusca(Object val) {
         Nodo aux = new Nodo(val);
         if (buscar(aux, cabeza) == true) {
@@ -150,9 +151,9 @@ public class Arbol {
             return false;
         }
     }
-
+    
     int TAM2 = 30;
-
+    
     public void imprimirArbol(Nodo a, int x, int y, int v) {
         if (a == null) {
             return;
@@ -166,7 +167,7 @@ public class Arbol {
                 lineas.add(aux);
                 imprimirArbol(a.getDere(), x + TAM, y + TAM2, v - 1);
             }
-
+            
             if (a.getIzq() != null) {
                 TAM = 25 * v;
                 Linea aux = new Linea(x, y, x - TAM, y + TAM2);
@@ -175,4 +176,25 @@ public class Arbol {
             }
         }
     }
+    
+    public int numGeneraciones(Nodo a, int n) {
+        if (a == null) {
+            return n;
+        } else {
+            int n1 = numGeneraciones(a.getIzq(), n + 1);
+            int nd = numGeneraciones(a.getDere(), n + 1);
+            if (n1 > nd) {
+                return n1;
+            } else {
+                return nd;
+            }
+        }
+    }
+    
+    public void imprimir(int x, int y) {
+        lineas = new LinkedList();
+        circulos = new LinkedList();
+        imprimirArbol(cabeza, x, y, numGeneraciones(cabeza, 0));
+    }
+    
 }
