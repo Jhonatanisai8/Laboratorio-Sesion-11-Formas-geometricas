@@ -3,12 +3,13 @@ package com.jhonatan.app.Arboles;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.LinkedList;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Jhonatan
  */
-public class Arbol {
+public class Arbol extends JPanel implements java.io.Serializable {
 
     public Nodo cabeza = null;
     public int TAM;
@@ -226,9 +227,27 @@ public class Arbol {
                         aux2 = aux2.getDere();
                     }
                 } else {
-                    System.out.println("Este nodo ya existe "+con);
+                    System.out.println("Este nodo ya existe " + con);
                 }
             }
         }
     }
+
+    @Override
+    public void paint(Graphics g) {
+        for (int i = 0; i < circulos.size(); i++) {
+            Circulo r = (Circulo) circulos.get(i);
+            g.setColor(r.relleno);
+            g.fillOval(r.x, r.y, 25, 25);
+            g.setColor(Color.white);
+            g.drawString(String.valueOf(r.com), r.x + 8, r.y + 15);
+        }
+
+        for (int i = 0; i < lineas.size(); i++) {
+            Linea r = (Linea) lineas.get(i);
+            g.setColor(r.color);
+            g.drawLine(r.x1 + 8, r.y1 + 15, r.x2 + 8, r.y2 + 15);
+        }
+    }
+
 }
