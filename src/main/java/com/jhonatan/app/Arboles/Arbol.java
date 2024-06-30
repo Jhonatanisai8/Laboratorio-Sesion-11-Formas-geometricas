@@ -45,4 +45,16 @@ public class Arbol {
         this.circulos = circulos;
     }
 
+    //métodos
+    public Nodo sacarNodo(Object con) {
+        Nodo aux = null;
+        for (int i = 0; i < circulos.size(); i++) {
+            Circulo c = (Circulo) circulos.get(i);
+            if (c.com == Integer.parseInt(String.valueOf(con))) {
+                aux = c.nodo;
+            }
+        }
+        return aux;
+    }
+    
 }
