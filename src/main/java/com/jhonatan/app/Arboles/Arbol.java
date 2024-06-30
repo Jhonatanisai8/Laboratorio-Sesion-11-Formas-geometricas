@@ -150,4 +150,29 @@ public class Arbol {
             return false;
         }
     }
+
+    int TAM2 = 30;
+
+    public void imprimirArbol(Nodo a, int x, int y, int v) {
+        if (a == null) {
+            return;
+        } else {
+            Circulo c = new Circulo(a.getValor(), x, y);
+            c.nodo = a;
+            circulos.add(c);
+            if (a.getDere() != null) {
+                TAM = 25 * v;
+                Linea aux = new Linea(x, y, x + TAM, y + TAM2);
+                lineas.add(aux);
+                imprimirArbol(a.getDere(), x + TAM, y + TAM2, v - 1);
+            }
+
+            if (a.getIzq() != null) {
+                TAM = 25 * v;
+                Linea aux = new Linea(x, y, x - TAM, y + TAM2);
+                lineas.add(aux);
+                imprimirArbol(a.getIzq(), x - TAM, y + TAM2, v - 1);
+            }
+        }
+    }
 }
