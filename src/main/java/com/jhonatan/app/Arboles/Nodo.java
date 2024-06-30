@@ -62,5 +62,18 @@ public class Nodo {
         this.nivel = nivel;
     }
 
-  
+    //métodos
+    public int comparar(Nodo a) {
+        int x = Integer.parseInt(String.valueOf(valor));
+        int y = Integer.parseInt(String.valueOf(a.getValor()));
+
+        if (x < y) {
+            return -1;
+        } else if (x == y) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
 }
