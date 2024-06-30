@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -42,5 +43,19 @@ public class ManejoArchivos {
         } catch (FileNotFoundException ex) {
             System.out.println("Error en guardar archivo: " + ex.toString());
         }
+    }
+
+
+    public Arbol abrir(JFrame panel){
+        javax.swing.filechooser.FileFilter filtro = new FileNameExtensionFilter("Archivo de Arboles (.tree)", "tree");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(filtro);
+        
+        int seleccion = fileChooser.showOpenDialog(panel);
+        if (seleccion == fileChooser.APPROVE_OPTION) {
+            File fichero = fileChooser.getSelectedFile();
+            return abrir(fichero.getAbsolutePath());
+        }
+        return null;
     }
 }
