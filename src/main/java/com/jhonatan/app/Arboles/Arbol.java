@@ -56,5 +56,31 @@ public class Arbol {
         }
         return aux;
     }
-    
+
+    public void borrar(Nodo padre, Nodo eli) {
+        System.out.println("Padre: " + padre.getValor());
+        System.out.println("Elim: " + eli.getValor());
+        if (padre != null) {
+            if (padre.getDere() != null) {
+                System.out.println("Me voy por la der -->");
+                if (padre.getDere().comparar(eli) == 0) {
+                    padre.setDere(null);
+                    System.out.println("Se ah eliminado correctamente");
+                } else {
+                    borrar(padre.getDere(), eli);
+                }
+            }
+
+            if (padre.getIzq() != null) {
+                System.out.println("Me voy para la izq <--");
+                if (padre.getIzq().comparar(eli) == 0) {
+                    padre.setIzq(null);
+                    System.out.println("Se elimino correctamente");
+                } else {
+                    borrar(padre.getIzq(), eli);
+                }
+            }
+        }
+    }
+
 }
