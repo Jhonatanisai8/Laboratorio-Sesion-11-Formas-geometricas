@@ -1,5 +1,6 @@
 package com.jhonatan.app.Arboles;
 
+import java.awt.Color;
 import java.util.LinkedList;
 
 /**
@@ -110,6 +111,43 @@ public class Arbol {
                 System.out.println("Act: " + act.getValor());
                 System.out.println("Cam: " + cam.getValor());
             }
+        }
+    }
+
+    public boolean buscar(Nodo val, Nodo a) {
+        if (a.comparar(val) == 0) {
+            return true;
+        }
+        if (a.comparar(val) == -1) {
+            return buscar(val, a.getDere());
+        } else if (a.comparar(val) == 1) {
+            return buscar(val, a.getIzq());
+        } else {
+            return false;
+        }
+    }
+
+    public void colorearBuscado(String val) {
+        for (int i = 0; i < circulos.size(); i++) {
+            Circulo c = (Circulo) circulos.get(i);
+            if (c.com == Integer.parseInt(val)) {
+                c.relleno = Color.BLUE;
+            }
+        }
+    }
+
+    public void mensaje(String s) {
+        System.out.println("Mensaje del  sistema: " + s);
+    }
+
+    public boolean seBusca(Object val) {
+        Nodo aux = new Nodo(val);
+        if (buscar(aux, cabeza) == true) {
+            mensaje("Se encontro");
+            return true;
+        } else {
+            mensaje("No se halla");
+            return false;
         }
     }
 }
