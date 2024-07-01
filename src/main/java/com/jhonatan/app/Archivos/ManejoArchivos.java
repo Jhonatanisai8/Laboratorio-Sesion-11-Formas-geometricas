@@ -2,9 +2,11 @@ package com.jhonatan.app.Archivos;
 
 import com.jhonatan.app.Arboles.Arbol;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -45,17 +47,24 @@ public class ManejoArchivos {
         }
     }
 
-
-    public Arbol abrir(JFrame panel){
+    public Arbol abrir(JFrame panel) throws IOException, FileNotFoundException, ClassNotFoundException {
         javax.swing.filechooser.FileFilter filtro = new FileNameExtensionFilter("Archivo de Arboles (.tree)", "tree");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileFilter(filtro);
-        
+
         int seleccion = fileChooser.showOpenDialog(panel);
         if (seleccion == fileChooser.APPROVE_OPTION) {
             File fichero = fileChooser.getSelectedFile();
-            return abrir(fichero.getAbsolutePath());
+            return Abrir(fichero.getAbsolutePath());
         }
         return null;
+    }
+
+    public Arbol Abrir(String archivo) throws FileNotFoundException, IOException, ClassNotFoundException {
+        ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(archivo));
+
+        Arbol a = (Arbol) entrada.readObject();
+        entrada.close();
+        return a;
     }
 }
