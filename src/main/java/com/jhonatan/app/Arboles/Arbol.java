@@ -323,4 +323,27 @@ public class Arbol extends JPanel implements java.io.Serializable {
         return s;
     }
 
+    public String recorridoPostOrden() {
+        String s = "";
+        if (cabeza != null) {
+            s = postOrden(cabeza);
+            mensaje(s);
+        } else {
+            mensaje("Arbol invalido para el recorrido");
+        }
+        return s;
+    }
+
+    public String postOrden(Nodo aux) {
+        String s = "";
+        mensaje("Estoy en el nodo: " + aux.getValor());
+        if (aux.getIzq() != null) {
+            s = s + "-" + postOrden(aux.getIzq());
+        }
+        if (aux.getDere() != null) {
+            s = s + "-" + postOrden(aux.getDere());
+        }
+        s = s + "-" + String.valueOf(aux.getValor());
+        return s;
+    }
 }
