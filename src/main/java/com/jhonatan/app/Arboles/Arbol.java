@@ -302,4 +302,25 @@ public class Arbol extends JPanel implements java.io.Serializable {
         return s;
     }
 
+    public String recorridoPreOrden() {
+        String s = "";
+        if (cabeza != null) {
+            s = preOrden(cabeza);
+        }
+        return s;
+    }
+
+    public String preOrden(Nodo n) {
+        String s = "";
+        s = String.valueOf(n.getValor());
+        if (n.getIzq() != null) {
+            s = s + "-" + preOrden(n.getIzq());
+        }
+
+        if (n.getDere() != null) {
+            s = s + "-" + preOrden(n.getDere());
+        }
+        return s;
+    }
+
 }
