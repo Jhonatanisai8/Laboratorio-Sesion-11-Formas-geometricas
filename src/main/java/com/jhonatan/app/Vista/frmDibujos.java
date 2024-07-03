@@ -4,15 +4,15 @@ import com.jhonatan.app.Arboles.Arbol;
 import com.jhonatan.app.Archivos.ManejoArchivos;
 
 public class frmDibujos extends javax.swing.JFrame {
-    
+
     public Arbol p;
     public ManejoArchivos mA = new ManejoArchivos();
-    
+
     public frmDibujos() {
         initComponents();
         iniciarArbol(null);
     }
-    
+
     public void iniciarArbol(Arbol a) {
         if (a == null) {
             p = new Arbol();
@@ -23,7 +23,7 @@ public class frmDibujos extends javax.swing.JFrame {
         this.add(p, 0, 0);
         p.repaint();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -190,8 +190,15 @@ public class frmDibujos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAgregarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
+        String nodo = txtAgregar.getText();
+        if (nodo.equals("") == false || nodo != null) {
+            p.agregarNodo(nodo);
+            txtAgregar.setText(null);
+            p.imprimir((this.getWidth() / 2) - 20, 20);
+            p.repaint();
+            this.repaint();
+        } else {
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
