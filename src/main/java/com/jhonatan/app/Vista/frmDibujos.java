@@ -1,11 +1,29 @@
 package com.jhonatan.app.Vista;
 
-public class frmDibujos extends javax.swing.JFrame {
+import com.jhonatan.app.Arboles.Arbol;
+import com.jhonatan.app.Archivos.ManejoArchivos;
 
+public class frmDibujos extends javax.swing.JFrame {
+    
+    public Arbol p;
+    public ManejoArchivos mA = new ManejoArchivos();
+    
     public frmDibujos() {
         initComponents();
+        iniciarArbol(null);
     }
-
+    
+    public void iniciarArbol(Arbol a) {
+        if (a == null) {
+            p = new Arbol();
+        } else {
+            p = a;
+        }
+        p.setSize(this.getWidth(), 384);
+        this.add(p, 0, 0);
+        p.repaint();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
