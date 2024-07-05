@@ -82,6 +82,9 @@ public class frmDibujos extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAgregarKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAgregarKeyTyped(evt);
+            }
         });
 
         btnAgregar.setText("Agregar Nodo");
@@ -249,6 +252,18 @@ public class frmDibujos extends javax.swing.JFrame {
         } else {
         }
     }//GEN-LAST:event_txtAgregarKeyPressed
+
+    private void txtAgregarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgregarKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAgregarKeyTyped
+
+    private void print(String s) {
+        txxMsn.setText(txxMsn.getText() + "\n" + s);
+    }
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
