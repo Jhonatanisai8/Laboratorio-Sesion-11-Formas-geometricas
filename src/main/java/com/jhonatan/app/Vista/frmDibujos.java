@@ -78,6 +78,11 @@ public class frmDibujos extends javax.swing.JFrame {
                 txtAgregarActionPerformed(evt);
             }
         });
+        txtAgregar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAgregarKeyPressed(evt);
+            }
+        });
 
         btnAgregar.setText("Agregar Nodo");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -229,6 +234,21 @@ public class frmDibujos extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtAgregarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAgregarKeyPressed
+
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            String nodo = txtAgregar.getText();
+            if (nodo.equals("") == false || nodo != null) {
+                p.agregarNodo(nodo);
+                txtAgregar.setText(null);
+                p.imprimir((this.getWidth() / 2) - 20, 20);
+                p.repaint();
+                this.repaint();
+            }
+        } else {
+        }
+    }//GEN-LAST:event_txtAgregarKeyPressed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
